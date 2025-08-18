@@ -1,93 +1,92 @@
-// ! incompelete
-#include<iostream>
+// 6) Write a program to implement the following operations on a Sparse Matrix, 
+// assuming the matrix is represented using a triplet. 
+// (b) Addition of two matrices. 
+//
+#include <iostream>
 using namespace std;
 
-int sparseMatrix(int arr[10][10],int rows,int cols,int sparse[50][3]){
-    int k=1;
-    int size =0;
+void printSparse(int sparse[100][3]) {
+    int nonZero = sparse[0][2];
+    cout << "Row Col Val " << endl;
+    for (int i = 0; i <= nonZero; i++) {
+        cout << sparse[i][0] << " " << sparse[i][1] << " " << sparse[i][2] << endl;
+    }
+    cout << endl;
+}
 
-    for(int i=0;i<rows;i++){
-        for(int j=0;j<cols;j++){
-            if(arr[i][j] != 0){
-                size++;
-            }
-        }
+void addSparse(int A[100][3], int B[100][3], int C[100][3]) {
+    if (A[0][0] != B[0][0] || A[0][1] != B[0][1]) {
+        cout << "Matrix dimensions do not match. Cannot add!" << endl;
+        return;
     }
 
-    sparse[0][0] = rows;
-    sparse[0][1] = cols;
-    sparse[0][2] = size+1;
-
-    // ? sparse matrix
-    for(int i=0;i<rows;i++){
-        for(int j=0;j<cols;j++){
-            if(arr[i][j] != 0){
-                sparse[k][0] = i;
-                sparse[k][1] = j;
-                sparse[k][2] = arr[i][j];
+    int i = 1, j = 1, k = 1;
+    int totalA = A[0][2], totalB = B[0][2];
+    while (i <= totalA && j <= totalB) {
+        if (A[i][0] < B[j][0] || (A[i][0] == B[j][0] && A[i][1] < B[j][1])) {
+            C[k][0] = A[i][0];
+            C[k][1] = A[i][1];
+            C[k][2] = A[i][2];
+            i++; 
+            k++;
+        }
+        else if (B[j][0] < A[i][0] || (B[j][0] == A[i][0] && B[j][1] < A[i][1])) {
+            C[k][0] = B[j][0];
+            C[k][1] = B[j][1];
+            C[k][2] = B[j][2];
+            j++; 
+            k++;
+        }
+        else {
+            int sum = A[i][2] + B[j][2];
+            if (sum != 0) {
+                C[k][0] = A[i][0];
+                C[k][1] = A[i][1];
+                C[k][2] = sum;
                 k++;
             }
+            i++; 
+            j++;
         }
     }
-    return size + 1;
-}
 
-void display(int sparse[50][3],int size){
-    cout << "Sparse matrix = " << endl;
-    for (int i=0;i<size;i++){
-        for(int j=0;j<3;j++){
-            cout << sparse[i][j] << " " ;
-        }
-        cout << endl;
+    while (i <= totalA) {
+        C[k][0] = A[i][0];
+        C[k][1] = A[i][1];
+        C[k][2] = A[i][2];
+        i++; 
+        k++;
+    }
+    while (j <= totalB) {
+        C[k][0] = B[j][0];
+        C[k][1] = B[j][1];
+        C[k][2] = B[j][2];
+        j++; 
+        k++;
     }
 
-}
-
-void addSparse(int arrA[50][3], int arrB[50][3], int arrC[50][3]){
-    if( arrA[0][0] != arrB[0][0] || arrA[0][1] != arrB[0][1]){
-        cout << "Addition not possible" << endl;
-    }
-
-    int m = arrA[0][2];
-    int n = arrB[0][2];
-    int i=1, j=1, k=1;
-
-    arrC[0][0] = arrA[0][0];
-    arrC[0][1] = arrA[0][1];
-
-
+    C[0][0] = A[0][0];
+    C[0][1] = A[0][1];
+    C[0][2] = k - 1;
 }
 
 int main() {
-    // Sparse Matrix A (4x4, 4 non-zeros)
-    int arrA[50][3] = {
-        {4, 4, 4},
-        {0, 0, 5},
-        {1, 1, 8},
-        {2, 2, 3},
-        {3, 0, 6}
-    };
+    int A[100][3], B[100][3], C[100][3];
+    A[0][0] = 3; A[0][1] = 3; A[0][2] = 3; 
+    A[1][0] = 0; A[1][1] = 0; A[1][2] = 1;
+    A[2][0] = 1; A[2][1] = 1; A[2][2] = 2;
+    A[3][0] = 2; A[3][1] = 2; A[3][2] = 3;
 
-    // Sparse Matrix B (4x4, 3 non-zeros)
-    int arrB[50][3] = {
-        {4, 4, 3},
-        {0, 0, 4},
-        {1, 2, 7},
-        {3, 0, 9}
-    };
-
-    int arrC[50][3]; // Result
-
-    cout << "Matrix A (Sparse):\n";
-    
-
-    cout << "Matrix B (Sparse):\n";
-    
-
-    
-
-    cout << "Resultant Matrix (Sparse A+B):\n";
-    
-
+    B[0][0] = 3; B[0][1] = 3; B[0][2] = 3;
+    B[1][0] = 0; B[1][1] = 0; B[1][2] = 4;
+    B[2][0] = 1; B[2][1] = 2; B[2][2] = 5;
+    B[3][0] = 2; B[3][1] = 2; B[3][2] = 6;
+    cout << "Sparse Matrix A:\n";
+    printSparse(A);
+    cout << "Sparse Matrix B:\n";
+    printSparse(B);
+    addSparse(A, B, C);
+    cout << "Resultant Sparse Matrix (A + B):\n";
+    printSparse(C);
     return 0;
 }
