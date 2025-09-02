@@ -11,9 +11,8 @@ using namespace std;
 vector<int>large(vector<int>&arr){
     int n = arr.size();
     vector<int>arr1(n,-1);
-
     for(int i=0;i<n;i++){
-        for (int j = i + 1; j < n; j++) {
+        for (int j=i + 1; j<n;j++) {
             if (arr[j] > arr[i]) {
                 arr1[i] = arr[j];
                 break;
@@ -26,8 +25,8 @@ vector<int>large(vector<int>&arr){
 
 int main() {
 
-    vector<int>arr = {6, 8, 0, 1, 3};
-    vector<int>arr1 = large(arr);
+    vector<int>arr ={6, 8, 0, 1, 3};
+    vector<int>arr1 =large(arr);
     for (int i=0;i<arr1.size();i++) {
         cout << i << " ";
     }
