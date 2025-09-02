@@ -3,7 +3,7 @@
 #include<vector>
 using namespace std;
 
-// ? My approch time complexity O(n)
+// ? My approch time complexity O(n2)
 class Solution {
 public:
     vector<int> dailyTemperatures(vector<int>& temperatures) {
