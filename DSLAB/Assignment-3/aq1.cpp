@@ -29,7 +29,7 @@ int main() {
 
     cout << "Nearest smallest element =  ";
     for(int j=0;j<G.size();j++){
-         cout << j << " ";
+         cout << G[j] << " ";
     }
     cout << endl;
 
