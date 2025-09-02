@@ -11,7 +11,7 @@ public:
         s.push(x);
         if(min.empty() || x<=min.top()) {
           min.push(x);
-        } else {
+        }else{
             min.push(min.top());
         }
     }
