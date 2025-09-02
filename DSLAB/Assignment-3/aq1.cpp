@@ -6,7 +6,7 @@
 #include <vector>
 using namespace std;
 
-vector<int>smallest(vector<int>& A) {
+vector<int>smallest(vector<int>&A) {
     stack<int>str;
     vector<int>G;
 
@@ -28,8 +28,8 @@ int main() {
     vector<int> G = smallest(A);
 
     cout << "Nearest smallest element =  ";
-    for(int x : G){
-         cout << x << " ";
+    for(int j=0;j<G.size();j++){
+         cout << j << " ";
     }
     cout << endl;
 
