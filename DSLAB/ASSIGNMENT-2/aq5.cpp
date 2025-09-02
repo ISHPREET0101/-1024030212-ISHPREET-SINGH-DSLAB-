@@ -5,26 +5,26 @@
 #include <iostream>
 using namespace std;
 
-void duplicateTwos(int arr[], int n) {
+void duplicateTwos(int arr[],int n){
     int count2 = 0;
   
-    for (int i = 0; i < n; i++) {
-        if (arr[i] == 2) {
+    for(int i=0;i<n;i++) {
+        if(arr[i] == 2) {
             count2++;
         }
     }
     
-    int i = n - 1;              
-    int j = n + count2 - 1; 
+    int i = n-1;              
+    int j = n +count2-1; 
    
-    while (i < j) {
-        if (arr[i] == 2) {
-            if (j < n) arr[j] = 2;  
+    while(i < j) {
+        if(arr[i] == 2) {
+            if(j < n) arr[j] = 2;  
             j--;
-            if (j < n) arr[j] = 2; 
+            if(j < n) arr[j] = 2; 
             j--;
         } else {
-            if (j < n) arr[j] = arr[i];
+            if(j < n) arr[j] = arr[i];
             j--;
         }
         i--;
@@ -34,7 +34,7 @@ void duplicateTwos(int arr[], int n) {
 
 
 int main() {
-    int arr[] = {1,3,2,2,4,5,2,3,2};
+    int arr[] ={1,3,2,2,4,5,2,3,2};
     int n = sizeof(arr)/sizeof(arr[0]);
 
     cout << "Original Array = " << endl;
@@ -47,7 +47,7 @@ int main() {
     duplicateTwos(arr, n);
 
     cout << "Modified Array = " << endl;
-    for (int i = 0; i < n; i++) {
+    for(int i = 0; i < n; i++) {
         cout << arr[i] << " ";
     }
     cout << endl;
