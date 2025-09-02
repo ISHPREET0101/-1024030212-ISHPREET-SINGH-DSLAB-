@@ -44,30 +44,29 @@ void display(int sparse[50][3],int size){
 }
 
 
-int addSparse(int arrA[50][3], int arrB[50][3], int arrC[50][3]) {
-    int i = 1, j = 1, k = 1;
+int addSparse(int arrA[50][3], int arrB[50][3], int arrC[50][3]){
+    int i=1,j=1,k=1;
 
     arrC[0][0] = arrA[0][0];
     arrC[0][1] = arrA[0][1];
 
-    while (i <= arrA[0][2] && j <= arrB[0][2]) {
-        if (arrA[i][0] < arrB[j][0] || (arrA[i][0] == arrB[j][0] && arrA[i][1] < arrB[j][1])) {           
+    while(i <= arrA[0][2] && j <= arrB[0][2]) {
+        if(arrA[i][0] < arrB[j][0] || (arrA[i][0] == arrB[j][0] && arrA[i][1] < arrB[j][1])) {           
             arrC[k][0] = arrA[i][0];
             arrC[k][1] = arrA[i][1];
             arrC[k][2] = arrA[i][2];
             i++; 
             k++;
-        }
-        else if (arrB[j][0] < arrA[i][0] || (arrB[j][0] == arrA[i][0] && arrB[j][1] < arrA[i][1])) {
+        }else if(arrB[j][0] < arrA[i][0] || (arrB[j][0] == arrA[i][0] && arrB[j][1] < arrA[i][1])) {
             arrC[k][0] = arrB[j][0];
             arrC[k][1] = arrB[j][1];
             arrC[k][2] = arrB[j][2];
             j++; 
             k++;
-        }
-        else {
+        }else
+{
             int sum = arrA[i][2] + arrB[j][2];
-            if (sum != 0) {
+            if(sum != 0) {
                 arrC[k][0] = arrA[i][0];
                 arrC[k][1] = arrA[i][1];
                 arrC[k][2] = sum;
@@ -118,13 +117,12 @@ int main() {
     cout << "Matrix A = " << endl;
     display(arrA, arrA[0][2] + 1);
     cout << endl;
-    cout << "Matrix B (Sparse) = " << endl;
-    display(arrB, arrB[0][2] + 1);
+    cout << "Matrix B  = " << endl;
+    display(arrB,arrB[0][2] +1);
     cout << endl;
-    int sizeC = addSparse(arrA, arrB, arrC);
+    int sizeC = addSparse(arrA,arrB,arrC);
     cout << endl;
     cout << "arrA + aarB = ";
-    display(arrC, sizeC);
-
+    display(arrC,sizeC);
     return 0;
 }
