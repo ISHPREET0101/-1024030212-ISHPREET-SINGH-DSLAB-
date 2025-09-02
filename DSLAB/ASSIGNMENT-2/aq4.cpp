@@ -9,16 +9,14 @@ using namespace std;
 void sort(int arr[],int n){
     int l = 0, m = 0, h = n - 1;
 
-    while (m <= h) {
-        if (arr[m] == 0) {
+    while(m <= h) {
+        if(arr[m] == 0) {
             swap(arr[l], arr[m]);
             l++;
             m++;
-        }
-        else if (arr[m] == 1) {
+        }else if(arr[m] == 1) {
             m++;
-        }
-        else { 
+        }else{ 
             swap(arr[m], arr[h]);
             h--;
         }
@@ -29,20 +27,20 @@ void sorting(vector<int> &arr){
     sort(arr.begin(), arr.end());
 }
 int main() {
-    vector<int> arr = {0,1,2,2,1,0,0,2,0,1};
-    int array[] = {0,1,2,2,1,0,0,2,0,1};
+    vector<int> arr ={0,1,2,2,1,0,0,2,0,1};
+    int array[] ={0,1,2,2,1,0,0,2,0,1};
     int n = 10;
     sorting(arr);
     
     sort(array,n);
 
-    for (int i = 0; i < arr.size(); i++){
+    for (int i=0; i<arr.size();i++){
         cout << arr[i] << " ";
     }
 
     cout << endl;
 
-    for (int i = 0; i < 10; i++){
+    for (int i=0; i<10;i++){
         cout << array[i] << " ";
     }
     return 0;
