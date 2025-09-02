@@ -6,33 +6,29 @@
 #include <vector>
 using namespace std;
 
-vector<int> smallest(vector<int>& A) {
-    stack<int> str;
-    vector<int> G;
+vector<int>smallest(vector<int>& A) {
+    stack<int>str;
+    vector<int>G;
 
-    for (int i = 0; i < A.size(); i++) {
-        while (!str.empty() && str.top() >= A[i]) {
-            str.pop();
-        }
+    for(int i = 0; i < A.size(); i++) {
+        while(!str.empty() && str.top() >= A[i]) {str.pop();}
 
-        if (str.empty()) {
+        if(str.empty()) {
             G.push_back(-1);
-        } else {
+        }else {
             G.push_back(str.top());
         }
-
-        str.push(A[i]);
+str.push(A[i]);
     }
-
-    return G;
+return G;
 }
 
 int main() {
     vector<int> A = {4,6,1,9,4,14};
     vector<int> G = smallest(A);
 
-    cout << "Nearest Smaller Elements =  ";
-    for (int x : G){
+    cout << "Nearest smallest element =  ";
+    for(int x : G){
          cout << x << " ";
     }
     cout << endl;
