@@ -9,7 +9,7 @@
 using namespace std;
 
 vector<int>large(vector<int>&arr){
-    int n = arr.size();
+    int n =arr.size();
     vector<int>arr1(n,-1);
     for(int i=0;i<n;i++){
         for (int j=i + 1; j<n;j++) {
