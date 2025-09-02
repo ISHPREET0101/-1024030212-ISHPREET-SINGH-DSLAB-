@@ -10,8 +10,8 @@ vector<int>smallest(vector<int>&A) {
     stack<int>str;
     vector<int>G;
 
-    for(int i = 0; i < A.size(); i++) {
-        while(!str.empty() && str.top() >= A[i]) {str.pop();}
+    for(int i=0; i<A.size();i++) {
+        while(!str.empty() && str.top()>= A[i]) {str.pop();}
 
         if(str.empty()) {
             G.push_back(-1);
@@ -24,8 +24,8 @@ return G;
 }
 
 int main() {
-    vector<int> A = {4,6,1,9,4,14};
-    vector<int> G = smallest(A);
+    vector<int> A ={4,6,1,9,4,14};
+    vector<int> G =smallest(A);
 
     cout << "Nearest smallest element =  ";
     for(int j=0;j<G.size();j++){
