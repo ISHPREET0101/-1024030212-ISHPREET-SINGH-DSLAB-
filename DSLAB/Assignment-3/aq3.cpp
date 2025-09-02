@@ -28,7 +28,7 @@ int main() {
     vector<int>arr ={5,6,3,8,9};
     vector<int>arr1 =large(arr);
     for (int i=0;i<arr1.size();i++) {
-        cout << i << " ";
+        cout << arr1[I] << " ";
     }
 
     return 0;
