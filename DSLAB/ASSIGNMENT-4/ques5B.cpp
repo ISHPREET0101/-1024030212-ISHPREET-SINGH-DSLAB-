@@ -1,0 +1,58 @@
+// 5) Write a program to implement a stack using (a) Two queues and (b) One Queue.
+#include<iostream>
+#include<stack>
+#include<queue>
+using namespace std;
+
+class popAlgo{
+    queue<int> q1,q2;
+    public:
+
+    void push(int x){
+        q1.push(x);
+    }
+
+    void pop(){
+        if(q1.empty()){
+           cout << "Underflow" << endl;
+        }
+
+        int size = q1.size();
+
+        for(int i=0;i<size-1;i++){
+            q2.push(q1.front());
+            q1.pop();
+        }
+        
+        int val = q1.front();
+        q1.pop();
+
+        while(!q2.empty()){
+            q1.push(q2.front());
+            q2.pop();
+        }
+    }
+
+    void display(){
+        queue<int> temp;
+        temp = q1;
+        while(!temp.empty()){
+            cout << temp.front() << " ";
+            temp.pop();
+        }
+        cout << endl;
+    }
+};
+
+int main(){
+    popAlgo q1;
+    q1.push(1);
+    q1.push(2);
+    q1.push(3);
+    q1.pop();
+    q1.push(4);
+    q1.push(5);
+
+    q1.display();
+    return 0;
+}
